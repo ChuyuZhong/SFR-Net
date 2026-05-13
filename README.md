@@ -200,4 +200,6 @@ Questions, bugs, training adventures, or SFR-Net stories are welcome:
 
 Finally, here's Phoebe. You're not allowed to bully her.
 
-![这是菲比](/pics/phoebe.jpg)
+<p align="left">
+<img src="./pics/phoebe.jpg" width="400">
+</p>
