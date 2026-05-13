@@ -201,5 +201,5 @@ Questions, bugs, training adventures, or SFR-Net stories are welcome:
 Finally, here's Phoebe. You're not allowed to bully her.
 
 <p align="left">
-<img src="./pics/phoebe.jpg" width="300">
+<img src="./pics/phoebe.png" width="300">
 </p>
