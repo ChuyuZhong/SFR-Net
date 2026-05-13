@@ -197,3 +197,7 @@ python tools/visualizer.py --dataset fbps --src work_dirs/fbps_predictions --dst
 Questions, bugs, training adventures, or SFR-Net stories are welcome:
 
 **buaazcy@buaa.edu.cn**
+
+Finally, here's Phoebe. You're not allowed to bully her.
+
+![这是菲比](/pics/phoebe.jpg)
