@@ -198,7 +198,7 @@ Questions, bugs, training adventures, or SFR-Net stories are welcome:
 
 **buaazcy@buaa.edu.cn**
 
-Finally, here's Phoebe. You're not allowed to bully her.
+If you find our repo helpful, please give us a star！🌟🌟🌟Finally, here's Phoebe. You're not allowed to bully her.
 
 <p align="left">
 <img src="./pics/phoebe.png" width="300">
