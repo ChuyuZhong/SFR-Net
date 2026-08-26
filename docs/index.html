@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="SFR-Net learns scale-frustum representations for ultra-wide area remote sensing image segmentation.">
+  <meta name="theme-color" content="#f4f7f4">
+  <meta property="og:title" content="SFR-Net">
+  <meta property="og:description" content="Learning Scale-Frustum Representations for Ultra-Wide Area Remote Sensing Image Segmentation">
+  <meta property="og:image" content="assets/sfrnet-cover.png">
+  <meta property="og:type" content="website">
+  <title>SFR-Net — Ultra-Wide Area Segmentation</title>
+  <link rel="icon" href="assets/sfrnet-cover.png" type="image/png">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+
+  <header class="site-header" data-header>
+    <a class="brand" href="#top" aria-label="SFR-Net home">
+      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span>SFR-Net</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span></span><span></span><span></span><span class="sr-only">Toggle navigation</span>
+    </button>
+    <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
+      <a class="active" href="#top">Home</a>
+      <a href="https://arxiv.org/abs/2605.25737" target="_blank" rel="noreferrer">Paper <span aria-hidden="true">↗</span></a>
+      <a href="https://github.com/ChuyuZhong/SFR-Net" target="_blank" rel="noreferrer">Code <span aria-hidden="true">↗</span></a>
+      <a href="https://huggingface.co/shadowwalk/SFR-Net" target="_blank" rel="noreferrer">Model <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero shell">
+      <div class="hero-copy reveal">
+        <p class="eyebrow"><span></span> Ultra-wide area segmentation</p>
+        <h1>SFR-Net</h1>
+        <p class="hero-title">Learning Scale-Frustum Representations for Ultra-Wide Area Remote Sensing Image Segmentation</p>
+        <p class="authors">Chuyu Zhong · Keyan Chen · Qinzhe Yang · Bowen Chen · Zhengxia Zou · Zhenwei Shi</p>
+        <p class="hero-summary">See the detail. Keep the context. SFR-Net aligns local, short-range, and long-range observations around one projection reference point, then fuses them into a continuous semantic view.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="https://arxiv.org/abs/2605.25737" target="_blank" rel="noreferrer">Read the paper <span aria-hidden="true">↗</span></a>
+          <a class="button button-secondary" href="https://github.com/ChuyuZhong/SFR-Net" target="_blank" rel="noreferrer">Explore the code <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="hero-note"><strong>Released</strong> code, inference tools, visualizations, and weights for GID, FBPS, and Inria Aerial.</div>
+      </div>
+      <div class="hero-visual reveal" data-delay="1">
+        <div class="hero-orbit" aria-hidden="true"></div>
+        <button class="paper-figure hero-figure" type="button" data-lightbox="assets/uwa-task.png" aria-label="Open the ultra-wide area task figure">
+          <img src="assets/uwa-task.png" alt="Comparison between conventional remote sensing segmentation and ultra-wide area segmentation">
+        </button>
+        <div class="float-card float-card-a"><strong>7K × 7K</strong><span>typical image scale</span></div>
+        <div class="float-card float-card-b"><strong>500+ km²</strong><span>geographic extent</span></div>
+        <div class="float-card float-card-c"><strong>3 scales</strong><span>one aligned view</span></div>
+      </div>
+    </section>
+
+    <section class="news-band" aria-label="Latest news">
+      <div class="shell news-inner">
+        <span class="news-label">Latest</span>
+        <p><time datetime="2026-08-26">Aug 26, 2026</time> — Code refreshed, known bugs fixed, and trained weights released for all three supported datasets.</p>
+        <a href="https://huggingface.co/shadowwalk/SFR-Net" target="_blank" rel="noreferrer">Get weights <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+    <section class="section shell" id="challenge">
+      <div class="section-heading reveal">
+        <p class="section-index">01 · Motivation</p>
+        <h2>One image. Many scales.<br>A very long story.</h2>
+        <p>Ultra-wide area images combine fine spatial detail with city-scale coverage. Patch-only models see fragments; aggressive resizing erases small objects. The hard part is preserving both.</p>
+      </div>
+      <div class="challenge-grid">
+        <button class="paper-figure wide-figure reveal" type="button" data-lightbox="assets/uwa-challenges.png" aria-label="Open the UWA segmentation challenges figure">
+          <img src="assets/uwa-challenges.png" alt="Scale variation and semantic discontinuity challenges in ultra-wide area remote sensing segmentation">
+        </button>
+        <div class="challenge-cards reveal" data-delay="1">
+          <article><span>01</span><h3>Extreme scale variation</h3><p>The same semantic class can occupy a few pixels or dominate an entire region.</p></article>
+          <article><span>02</span><h3>Broken continuity</h3><p>Independent patches lose long-range structure at roads, rivers, boundaries, and settlements.</p></article>
+          <article><span>03</span><h3>Bounded computation</h3><p>Context must grow without feeding the full multi-gigapixel scene into the network.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section shell" id="method">
+      <div class="section-heading centered reveal">
+        <p class="section-index">02 · Method</p>
+        <h2>Scale-frustum representations,<br>fused from near to far.</h2>
+        <p>SFR-Net samples aligned observations, identifies each range with learnable scale embeddings, and uses cascaded cross-scale fusion to progressively enrich the local representation.</p>
+      </div>
+      <button class="paper-figure framework-figure reveal" type="button" data-lightbox="assets/framework.png" aria-label="Open the full SFR-Net framework figure">
+        <img src="assets/framework.png" alt="Overall SFR-Net architecture with scale-frustum representation construction and cascaded cross-scale fusion">
+        <span class="zoom-hint">Click to inspect <b aria-hidden="true">↗</b></span>
+      </button>
+      <div class="method-steps">
+        <article class="reveal"><span>01</span><h3>Construct</h3><p>Center every observation on the same projection reference point.</p></article>
+        <article class="reveal" data-delay="1"><span>02</span><h3>Identify</h3><p>Add learnable scale embeddings after resizing observations to a common resolution.</p></article>
+        <article class="reveal" data-delay="2"><span>03</span><h3>Fuse</h3><p>Cascade cross-scale context toward the local branch while preserving detail.</p></article>
+      </div>
+    </section>
+
+    <section class="section results-section" id="results">
+      <div class="shell">
+        <div class="section-heading light reveal">
+          <p class="section-index">03 · Performance</p>
+          <h2>Consistent gains across<br>two demanding benchmarks.</h2>
+          <p>The paper reports state-of-the-art segmentation quality on GID and FBPS, with the largest gains where scale variation and semantic discontinuity matter most.</p>
+        </div>
+        <div class="metric-grid">
+          <article class="metric-card reveal"><p>GID · mIoU</p><strong>74.67</strong><span class="gain">+1.72</span><small>paper result</small></article>
+          <article class="metric-card reveal" data-delay="1"><p>GID · OA</p><strong>86.94</strong><span class="gain">+1.09</span><small>paper result</small></article>
+          <article class="metric-card reveal" data-delay="2"><p>FBPS · mIoU</p><strong>77.24</strong><span class="gain">+4.29</span><small>paper result</small></article>
+          <article class="metric-card reveal" data-delay="3"><p>FBPS · OA</p><strong>92.91</strong><span class="gain">+2.40</span><small>paper result</small></article>
+        </div>
+        <button class="paper-figure performance-figure reveal" type="button" data-lightbox="assets/performance-table.png" aria-label="Open the complete benchmark comparison table">
+          <img src="assets/performance-table.png" alt="Quantitative comparison of SFR-Net and competing methods on GID and FBPS">
+          <span class="zoom-hint">Open full table <b aria-hidden="true">↗</b></span>
+        </button>
+      </div>
+    </section>
+
+    <section class="section shell" id="visualizations">
+      <div class="section-heading reveal">
+        <p class="section-index">04 · Qualitative results</p>
+        <h2>Slide across datasets.</h2>
+        <p>Explore full-scene predictions. SFR-Net improves global consistency while retaining fine structures in dense, heterogeneous regions.</p>
+      </div>
+      <div class="gallery reveal">
+        <div class="gallery-toolbar">
+          <div><span data-gallery-kicker>Dataset 01 / 02</span><h3 data-gallery-title>GID</h3></div>
+          <div class="gallery-controls">
+            <button type="button" data-gallery-prev aria-label="Previous dataset">←</button>
+            <button type="button" data-gallery-next aria-label="Next dataset">→</button>
+          </div>
+        </div>
+        <button class="paper-figure gallery-frame" type="button" data-gallery-image data-lightbox="assets/qualitative-gid.png" aria-label="Open GID qualitative results">
+          <img src="assets/qualitative-gid.png" alt="Qualitative comparison on GID">
+        </button>
+        <div class="gallery-footer">
+          <p data-gallery-copy>Large-scale land-cover regions stay coherent without sacrificing local boundaries.</p>
+          <div class="gallery-dots" aria-label="Choose dataset"><button class="active" type="button" data-gallery-dot="0" aria-label="Show GID"></button><button type="button" data-gallery-dot="1" aria-label="Show FBPS"></button></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section demo-section" id="demo">
+      <div class="shell">
+        <div class="section-heading light reveal">
+          <p class="section-index">05 · Interactive demo</p>
+          <h2>Zoom together.<br>Compare pixel by pixel.</h2>
+          <p>Choose one of five ultra-wide scenes, then zoom or drag either pane. The original image and SFR-Net prediction stay perfectly synchronized.</p>
+        </div>
+        <div class="demo-card reveal" data-delay="1">
+          <div class="demo-toolbar">
+            <div class="demo-samples" role="group" aria-label="Choose a scene">
+              <span>Scene</span>
+              <button class="active" type="button" data-demo-sample="1" aria-pressed="true">01</button>
+              <button type="button" data-demo-sample="2" aria-pressed="false">02</button>
+              <button type="button" data-demo-sample="3" aria-pressed="false">03</button>
+              <button type="button" data-demo-sample="4" aria-pressed="false">04</button>
+              <button type="button" data-demo-sample="5" aria-pressed="false">05</button>
+            </div>
+            <div class="demo-zoom" aria-label="Synchronized zoom controls">
+              <button type="button" data-demo-minus aria-label="Zoom out">−</button>
+              <input type="range" min="100" max="1000" value="100" step="25" data-demo-range aria-label="Zoom level">
+              <button type="button" data-demo-plus aria-label="Zoom in">+</button>
+              <button class="demo-reset" type="button" data-demo-reset>Reset</button>
+              <output data-demo-zoom>100%</output>
+            </div>
+          </div>
+          <div class="demo-viewers">
+            <article class="demo-pane">
+              <div class="demo-pane-head"><span>Source</span><strong>Original image</strong></div>
+              <div class="zoom-viewport" data-zoom-viewport>
+                <img src="assets/demo/demo-1-original.jpg" alt="Ultra-wide remote sensing source image, scene 1" data-demo-original draggable="false">
+                <span class="zoom-cue">Scroll to zoom · drag to pan</span>
+              </div>
+            </article>
+            <article class="demo-pane">
+              <div class="demo-pane-head"><span>Prediction</span><strong>SFR-Net segmentation</strong></div>
+              <div class="zoom-viewport" data-zoom-viewport>
+                <img src="assets/demo/demo-1-result.png" alt="SFR-Net semantic segmentation result, scene 1" data-demo-result draggable="false">
+                <span class="zoom-cue">Synchronized view</span>
+              </div>
+            </article>
+          </div>
+          <div class="demo-footer">
+            <p><span class="sync-dot" aria-hidden="true"></span>Pan and zoom are linked across both windows.</p>
+            <p data-demo-name>FBPS · Scene 01</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section ablation-section" id="ablations">
+      <div class="shell">
+        <div class="section-heading centered reveal">
+          <p class="section-index">06 · Ablations</p>
+          <h2>Take it apart.<br>See what moves the needle.</h2>
+          <p>Switch between the core studies to inspect transferability, cascaded fusion, feature quality, and overlap robustness.</p>
+        </div>
+        <div class="ablation-tabs reveal" role="tablist" aria-label="Ablation studies">
+          <button class="active" type="button" role="tab" aria-selected="true" aria-controls="ablation-sfr" data-ablation="sfr">SFR transferability</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="ablation-ccsf" data-ablation="ccsf">CCSF fusion</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="ablation-overlap" data-ablation="overlap">Overlap robustness</button>
+        </div>
+        <div class="ablation-panel active" id="ablation-sfr" role="tabpanel">
+          <div class="ablation-copy">
+            <span class="mini-label">Backbone agnostic</span>
+            <h3>SFR lifts three different segmentation families.</h3>
+            <p>Adding scale-frustum representations produces large mIoU gains for PSPNet, DeepLabv3+, and UperNet. The convergence view shows the advantage persists through training.</p>
+            <div class="ablation-stat"><strong>+10.66</strong><span>mIoU · PSPNet</span></div>
+          </div>
+          <button class="paper-figure" type="button" data-lightbox="assets/ablation-sfr-table.png"><img src="assets/ablation-sfr-table.png" alt="Scale-frustum representation ablation table"></button>
+          <button class="paper-figure" type="button" data-lightbox="assets/convergence.png"><img src="assets/convergence.png" alt="Training convergence with and without scale-frustum representations"></button>
+        </div>
+        <div class="ablation-panel" id="ablation-ccsf" role="tabpanel" hidden>
+          <div class="ablation-copy">
+            <span class="mini-label">Progressive context</span>
+            <h3>Short-range and long-range cues are complementary.</h3>
+            <p>Cascaded fusion improves both datasets, while the feature maps reveal sharper edges and cleaner foreground-background separation.</p>
+            <div class="ablation-stat"><strong>+6.87</strong><span>mIoU · FBPS</span></div>
+          </div>
+          <button class="paper-figure" type="button" data-lightbox="assets/ablation-ccsf-tables.png"><img src="assets/ablation-ccsf-tables.png" alt="CCSF component ablations on GID and FBPS"></button>
+          <button class="paper-figure" type="button" data-lightbox="assets/ccsf-features.png"><img src="assets/ccsf-features.png" alt="Feature maps before and after CCSF"></button>
+        </div>
+        <div class="ablation-panel overlap-panel" id="ablation-overlap" role="tabpanel" hidden>
+          <div class="ablation-copy">
+            <span class="mini-label">Boundary consistency</span>
+            <h3>Only 0.84 mIoU separates overlap and no-overlap inference.</h3>
+            <p>The smallest gap among compared methods indicates that SFR-Net learns stronger internal semantic continuity across patch boundaries.</p>
+            <div class="ablation-stat neutral"><strong>0.84</strong><span>Δ mIoU</span></div>
+          </div>
+          <button class="paper-figure" type="button" data-lightbox="assets/overlap-table.png"><img src="assets/overlap-table.png" alt="Inference comparison with and without overlapping patches"></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section shell" id="model">
+      <div class="release-card reveal">
+        <div class="release-copy">
+          <p class="section-index">07 · Model release</p>
+          <h2>Ready to reproduce.</h2>
+          <p>Download pretrained backbones and released checkpoints for GID, FBPS, and Inria Aerial. Released checkpoint metrics were reproduced with random seed 42 and therefore differ slightly from the paper.</p>
+          <a class="button button-primary" href="https://huggingface.co/shadowwalk/SFR-Net" target="_blank" rel="noreferrer">Open on Hugging Face <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="release-metrics">
+          <article><h3>GID</h3><dl><div><dt>OA</dt><dd>86.82</dd></div><div><dt>mIoU</dt><dd>74.46</dd></div><div><dt>mF1</dt><dd>85.73</dd></div></dl></article>
+          <article><h3>FBPS</h3><dl><div><dt>OA</dt><dd>93.50</dd></div><div><dt>mIoU</dt><dd>77.86</dd></div><div><dt>mF1</dt><dd>66.72</dd></div></dl></article>
+          <article><h3>Inria Aerial</h3><dl><div><dt>OA</dt><dd>96.91</dd></div><div><dt>IoU*</dt><dd>83.96</dd></div><div><dt>F1*</dt><dd>91.28</dd></div></dl><small>* building class</small></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section citation-section" id="citation">
+      <div class="shell citation-grid">
+        <div class="section-heading light reveal">
+          <p class="section-index">08 · Citation</p>
+          <h2>Build on SFR-Net.</h2>
+          <p>If this project supports your research, please cite the paper and star the repository.</p>
+        </div>
+        <div class="code-card reveal" data-delay="1">
+          <div class="code-card-head"><span>BibTeX</span><button type="button" data-copy-citation>Copy</button></div>
+          <pre><code data-citation>@article{zhong2026sfr,
+  title={SFR-Net: Learning Scale-Frustum Representations for Ultra-Wide Area Remote Sensing Image Segmentation},
+  author={Zhong, Chuyu and Chen, Keyan and Yang, Qinzhe and Chen, Bowen and Zou, Zhengxia and Shi, Zhenwei},
+  journal={arXiv preprint arXiv:2605.25737},
+  year={2026}
+}</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="section phoebe-section">
+      <div class="shell phoebe-card reveal">
+        <div class="phoebe-copy">
+          <p class="section-index">One more thing</p>
+          <h2>Meet Phoebe.</h2>
+          <p>If you find this repository helpful, please give it a star. Finally, here is Phoebe. You are not allowed to bully her.</p>
+          <a class="button button-primary" href="https://github.com/ChuyuZhong/SFR-Net" target="_blank" rel="noreferrer">Star SFR-Net <span aria-hidden="true">↗</span></a>
+        </div>
+        <figure class="phoebe-photo">
+          <img src="assets/phoebe.png" alt="Phoebe" loading="lazy">
+        </figure>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <div><a class="brand footer-brand" href="#top"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>SFR-Net</span></a><p>Scale-aware context for ultra-wide scenes.</p></div>
+      <div class="footer-links"><a href="https://arxiv.org/abs/2605.25737">Paper</a><a href="https://github.com/ChuyuZhong/SFR-Net">Code</a><a href="https://huggingface.co/shadowwalk/SFR-Net">Models</a><a href="mailto:buaazcy@buaa.edu.cn">Contact</a></div>
+      <p class="copyright">© 2026 SFR-Net authors.</p>
+    </div>
+  </footer>
+
+  <dialog class="lightbox" aria-label="Figure preview">
+    <button class="lightbox-close" type="button" aria-label="Close preview">×</button>
+    <img src="" alt="">
+  </dialog>
+</body>
+</html>
