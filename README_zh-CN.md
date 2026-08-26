@@ -13,14 +13,10 @@
   <img src="pics/SFR-Net-cover.png" alt="SFR-Net cover" width="100%">
 </p>
 
-<p align="center">
-  <strong>Learning Scale-Frustum Representations for Ultra-Wide Area Remote Sensing Image Segmentation</strong>
-</p>
-
-<p align="center">
-  <a href="https://arxiv.org/abs/2605.25737">Paper</a> |
-  <a href="https://huggingface.co/shadowwalk/SFR-Net">Weights</a>
-</p>
+<h2 align="center">
+  Learning Scale-Frustum Representations for Ultra-Wide Area<br>
+  Remote Sensing Image Segmentation
+</h2>
 
 ## 概述 🧭
 
