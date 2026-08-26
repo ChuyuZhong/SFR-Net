@@ -95,6 +95,100 @@ galleryFrame.closest('.gallery').addEventListener('keydown', (event) => {
   if (event.key === 'ArrowRight') showGalleryItem(galleryIndex + 1);
 });
 
+const demoCard = $('.demo-card');
+const demoViewports = $$('[data-zoom-viewport]');
+const demoImages = [$('[data-demo-original]'), $('[data-demo-result]')];
+const demoRange = $('[data-demo-range]');
+const demoZoomOutput = $('[data-demo-zoom]');
+let demoState = { zoom: 1, x: 0, y: 0 };
+let dragState = null;
+
+const applyDemoTransform = () => {
+  const transform = 'translate3d(' + demoState.x + 'px,' + demoState.y + 'px,0) scale(' + demoState.zoom + ')';
+  demoImages.forEach((image) => { image.style.transform = transform; });
+  demoRange.value = String(Math.round(demoState.zoom * 100));
+  demoZoomOutput.value = Math.round(demoState.zoom * 100) + '%';
+  demoZoomOutput.textContent = Math.round(demoState.zoom * 100) + '%';
+};
+
+const clampDemoPan = () => {
+  const rect = demoViewports[0].getBoundingClientRect();
+  const maxX = Math.max(0, rect.width * (demoState.zoom - 1) / 2);
+  const maxY = Math.max(0, rect.height * (demoState.zoom - 1) / 2);
+  demoState.x = Math.max(-maxX, Math.min(maxX, demoState.x));
+  demoState.y = Math.max(-maxY, Math.min(maxY, demoState.y));
+};
+
+const setDemoZoom = (nextZoom) => {
+  demoState.zoom = Math.max(1, Math.min(4, nextZoom));
+  if (demoState.zoom === 1) { demoState.x = 0; demoState.y = 0; }
+  clampDemoPan();
+  applyDemoTransform();
+  demoCard.classList.add('interacted');
+};
+
+const resetDemoView = () => {
+  demoState = { zoom: 1, x: 0, y: 0 };
+  applyDemoTransform();
+};
+
+demoRange.addEventListener('input', () => setDemoZoom(Number(demoRange.value) / 100));
+$('[data-demo-minus]').addEventListener('click', () => setDemoZoom(demoState.zoom - .25));
+$('[data-demo-plus]').addEventListener('click', () => setDemoZoom(demoState.zoom + .25));
+$('[data-demo-reset]').addEventListener('click', resetDemoView);
+
+demoViewports.forEach((viewport) => {
+  viewport.addEventListener('wheel', (event) => {
+    event.preventDefault();
+    setDemoZoom(demoState.zoom + (event.deltaY < 0 ? .2 : -.2));
+  }, { passive: false });
+
+  viewport.addEventListener('pointerdown', (event) => {
+    dragState = { pointerId: event.pointerId, startX: event.clientX, startY: event.clientY, imageX: demoState.x, imageY: demoState.y };
+    viewport.setPointerCapture(event.pointerId);
+    demoViewports.forEach((item) => item.classList.add('dragging'));
+    demoCard.classList.add('interacted');
+  });
+
+  viewport.addEventListener('pointermove', (event) => {
+    if (!dragState || dragState.pointerId !== event.pointerId) return;
+    demoState.x = dragState.imageX + event.clientX - dragState.startX;
+    demoState.y = dragState.imageY + event.clientY - dragState.startY;
+    clampDemoPan();
+    applyDemoTransform();
+  });
+
+  const endDrag = (event) => {
+    if (!dragState || dragState.pointerId !== event.pointerId) return;
+    dragState = null;
+    demoViewports.forEach((item) => item.classList.remove('dragging'));
+  };
+  viewport.addEventListener('pointerup', endDrag);
+  viewport.addEventListener('pointercancel', endDrag);
+});
+
+$$('[data-demo-sample]').forEach((button) => button.addEventListener('click', () => {
+  const sample = Number(button.dataset.demoSample);
+  $$('[data-demo-sample]').forEach((item) => {
+    const active = item === button;
+    item.classList.toggle('active', active);
+    item.setAttribute('aria-pressed', String(active));
+  });
+  demoImages[0].src = 'assets/demo/demo-' + sample + '-original.jpg';
+  demoImages[1].src = 'assets/demo/demo-' + sample + '-result.png';
+  demoImages[0].alt = 'Ultra-wide remote sensing source image, scene ' + sample;
+  demoImages[1].alt = 'SFR-Net semantic segmentation result, scene ' + sample;
+  $('[data-demo-name]').textContent = 'FBPS · Scene 0' + sample;
+  resetDemoView();
+}));
+
+for (let sample = 2; sample <= 5; sample += 1) {
+  const original = new Image();
+  const result = new Image();
+  original.src = 'assets/demo/demo-' + sample + '-original.jpg';
+  result.src = 'assets/demo/demo-' + sample + '-result.png';
+}
+
 $$('[data-ablation]').forEach((tab) => tab.addEventListener('click', () => {
   $$('[data-ablation]').forEach((item) => {
     const active = item === tab;

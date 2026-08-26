@@ -1,26 +1,23 @@
 # SFR-Net
 
 <p align="center">
+  <a href="https://chuyuzhong.github.io/SFR-Net/"><img src="https://img.shields.io/badge/Project-Homepage-1598B7.svg" alt="Project homepage"></a>
   <a href="https://arxiv.org/abs/2605.25737"><img src="https://img.shields.io/badge/arXiv-2605.25737-b31b1b.svg" alt="arXiv"></a>
   <a href="https://huggingface.co/shadowwalk/SFR-Net"><img src="https://img.shields.io/badge/Hugging%20Face-Weights-FFD21E.svg" alt="Hugging Face weights"></a>
 </p>
-
 
 <p align="center">
   English | <a href="README_zh-CN.md">简体中文</a>
 </p>
 
-
 <p align="center">
   <img src="pics/SFR-Net-cover.png" alt="SFR-Net cover" width="100%">
 </p>
-
 
 <h2 align="center">
   Learning Scale-Frustum Representations for Ultra-Wide Area<br>
   Remote Sensing Image Segmentation
 </h2>
-
 
 ## Overview 🧭
 
@@ -29,7 +26,6 @@ SFR-Net is designed for semantic segmentation of ultra-wide area (UWA) remote se
 <p align="center">
   <img src="pics/sfrnet-framework.png" alt="Overall framework of SFR-Net" width="100%">
 </p>
-
 
 ## News 📰
 
@@ -54,7 +50,6 @@ The following table is taken from the paper. SFR-Net reaches `74.67%` mIoU on GI
 <p align="center">
   <img src="pics/sfrnet-performance.png" alt="Quantitative comparison on GID and FBPS" width="100%">
 </p>
-
 
 ## Repository Layout 🗂️
 
@@ -94,13 +89,13 @@ All pretrained backbones and released SFR-Net checkpoints are hosted in the [SFR
 
 ### Available files
 
-| Type                                | File                                                         | Expected location                                            |
-| ----------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ResNet-18 ImageNet pretraining      | [`resnet18_v1c-b5776b93.pth`](https://huggingface.co/shadowwalk/SFR-Net/blob/main/pretrain/resnet18_v1c-b5776b93.pth) | `pretrain/resnet18_v1c-b5776b93.pth`                         |
+| Type | File | Expected location |
+| --- | --- | --- |
+| ResNet-18 ImageNet pretraining | [`resnet18_v1c-b5776b93.pth`](https://huggingface.co/shadowwalk/SFR-Net/blob/main/pretrain/resnet18_v1c-b5776b93.pth) | `pretrain/resnet18_v1c-b5776b93.pth` |
 | Swin-Large ImageNet-22K pretraining | [`swin_large_patch4_window12_384_22k_20220412-6580f57d.pth`](https://huggingface.co/shadowwalk/SFR-Net/blob/main/pretrain/swin_large_patch4_window12_384_22k_20220412-6580f57d.pth) | `pretrain/swin_large_patch4_window12_384_22k_20220412-6580f57d.pth` |
-| GID checkpoint                      | [`iter_320000_gid.pth`](https://huggingface.co/shadowwalk/SFR-Net/blob/main/weights/iter_320000_gid.pth) | `weights/iter_320000_gid.pth`                                |
-| FBPS checkpoint                     | [`iter_320000_fbps.pth`](https://huggingface.co/shadowwalk/SFR-Net/blob/main/weights/iter_320000_fbps.pth) | `weights/iter_320000_fbps.pth`                               |
-| Inria Aerial checkpoint             | [`iter_320000_inria.pth`](https://huggingface.co/shadowwalk/SFR-Net/blob/main/weights/iter_320000_inria.pth) | `weights/iter_320000_inria.pth`                              |
+| GID checkpoint | [`iter_320000_gid.pth`](https://huggingface.co/shadowwalk/SFR-Net/blob/main/weights/iter_320000_gid.pth) | `weights/iter_320000_gid.pth` |
+| FBPS checkpoint | [`iter_320000_fbps.pth`](https://huggingface.co/shadowwalk/SFR-Net/blob/main/weights/iter_320000_fbps.pth) | `weights/iter_320000_fbps.pth` |
+| Inria Aerial checkpoint | [`iter_320000_inria.pth`](https://huggingface.co/shadowwalk/SFR-Net/blob/main/weights/iter_320000_inria.pth) | `weights/iter_320000_inria.pth` |
 
 You can download the files with the Hugging Face CLI:
 
@@ -113,11 +108,11 @@ cp -r downloads/SFR-Net/weights/. weights/
 
 ### Released checkpoint results
 
-| Dataset      | OA (%) | mIoU (%) | mF1 (%) | Checkpoint                      |
-| ------------ | -----: | -------: | ------: | ------------------------------- |
-| GID          |  86.82 |    74.46 |   85.73 | `weights/iter_320000_gid.pth`   |
-| FBPS         |  93.50 |    77.86 |   66.72 | `weights/iter_320000_fbps.pth`  |
-| Inria Aerial |  96.91 |   83.96* |  91.28* | `weights/iter_320000_inria.pth` |
+| Dataset | OA (%) | mIoU (%) | mF1 (%) | Checkpoint |
+| --- | ---: | ---: | ---: | --- |
+| GID | 86.82 | 74.46 | 85.73 | `weights/iter_320000_gid.pth` |
+| FBPS | 93.50 | 77.86 | 66.72 | `weights/iter_320000_fbps.pth` |
+| Inria Aerial | 96.91 | 83.96* | 91.28* | `weights/iter_320000_inria.pth` |
 
 `*` For Inria Aerial, IoU and F1 are reported for the building class only. The released checkpoints were trained with random seed `42`; their results therefore differ slightly from the values reported in the paper.
 
@@ -145,10 +140,10 @@ pip install mxnet
 
 Official dataset pages:
 
-| Dataset      | Website                                                      |
-| ------------ | ------------------------------------------------------------ |
-| GID          | [Gaofen Image Dataset](https://x-ytong.github.io/project/GID) |
-| FBPS         | [Five-Billion-Pixels](https://x-ytong.github.io/project/Five-Billion-Pixels.html) |
+| Dataset | Website |
+| --- | --- |
+| GID | [Gaofen Image Dataset](https://x-ytong.github.io/project/GID) |
+| FBPS | [Five-Billion-Pixels](https://x-ytong.github.io/project/Five-Billion-Pixels.html) |
 | Inria Aerial | [Inria Aerial Image Labeling Dataset](https://project.inria.fr/aerialimagelabeling/) |
 
 Organize the datasets as follows:
@@ -311,4 +306,3 @@ If you find this repository helpful, please give it a star. Finally, here is Pho
 <p align="left">
   <img src="pics/phoebe.png" width="300" alt="Phoebe">
 </p>
-

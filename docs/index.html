@@ -177,10 +177,59 @@
       </div>
     </section>
 
+    <section class="section demo-section" id="demo">
+      <div class="shell">
+        <div class="section-heading light reveal">
+          <p class="section-index">06 · Interactive demo</p>
+          <h2>Zoom together.<br>Compare pixel by pixel.</h2>
+          <p>Choose one of five ultra-wide scenes, then zoom or drag either pane. The original image and SFR-Net prediction stay perfectly synchronized.</p>
+        </div>
+        <div class="demo-card reveal" data-delay="1">
+          <div class="demo-toolbar">
+            <div class="demo-samples" role="group" aria-label="Choose a scene">
+              <span>Scene</span>
+              <button class="active" type="button" data-demo-sample="1" aria-pressed="true">01</button>
+              <button type="button" data-demo-sample="2" aria-pressed="false">02</button>
+              <button type="button" data-demo-sample="3" aria-pressed="false">03</button>
+              <button type="button" data-demo-sample="4" aria-pressed="false">04</button>
+              <button type="button" data-demo-sample="5" aria-pressed="false">05</button>
+            </div>
+            <div class="demo-zoom" aria-label="Synchronized zoom controls">
+              <button type="button" data-demo-minus aria-label="Zoom out">−</button>
+              <input type="range" min="100" max="400" value="100" step="10" data-demo-range aria-label="Zoom level">
+              <button type="button" data-demo-plus aria-label="Zoom in">+</button>
+              <button class="demo-reset" type="button" data-demo-reset>Reset</button>
+              <output data-demo-zoom>100%</output>
+            </div>
+          </div>
+          <div class="demo-viewers">
+            <article class="demo-pane">
+              <div class="demo-pane-head"><span>Source</span><strong>Original image</strong></div>
+              <div class="zoom-viewport" data-zoom-viewport>
+                <img src="assets/demo/demo-1-original.jpg" alt="Ultra-wide remote sensing source image, scene 1" data-demo-original draggable="false">
+                <span class="zoom-cue">Scroll to zoom · drag to pan</span>
+              </div>
+            </article>
+            <article class="demo-pane">
+              <div class="demo-pane-head"><span>Prediction</span><strong>SFR-Net segmentation</strong></div>
+              <div class="zoom-viewport" data-zoom-viewport>
+                <img src="assets/demo/demo-1-result.png" alt="SFR-Net semantic segmentation result, scene 1" data-demo-result draggable="false">
+                <span class="zoom-cue">Synchronized view</span>
+              </div>
+            </article>
+          </div>
+          <div class="demo-footer">
+            <p><span class="sync-dot" aria-hidden="true"></span>Pan and zoom are linked across both windows.</p>
+            <p data-demo-name>FBPS · Scene 01</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section ablation-section" id="ablations">
       <div class="shell">
         <div class="section-heading centered reveal">
-          <p class="section-index">06 · Ablations</p>
+          <p class="section-index">07 · Ablations</p>
           <h2>Take it apart.<br>See what moves the needle.</h2>
           <p>Switch between the core studies to inspect transferability, cascaded fusion, feature quality, and overlap robustness.</p>
         </div>
@@ -209,7 +258,7 @@
     <section class="section shell" id="model">
       <div class="release-card reveal">
         <div class="release-copy">
-          <p class="section-index">07 · Model release</p>
+          <p class="section-index">08 · Model release</p>
           <h2>Ready to reproduce.</h2>
           <p>Download pretrained backbones and released checkpoints for GID, FBPS, and Inria Aerial. Released checkpoint metrics were reproduced with random seed 42 and therefore differ slightly from the paper.</p>
           <a class="button button-primary" href="https://huggingface.co/shadowwalk/SFR-Net" target="_blank" rel="noreferrer">Open on Hugging Face <span aria-hidden="true">↗</span></a>
@@ -225,7 +274,7 @@
     <section class="section citation-section" id="citation">
       <div class="shell citation-grid">
         <div class="section-heading light reveal">
-          <p class="section-index">08 · Citation</p>
+          <p class="section-index">09 · Citation</p>
           <h2>Build on SFR-Net.</h2>
           <p>If this project supports your research, please cite the paper and star the repository.</p>
         </div>

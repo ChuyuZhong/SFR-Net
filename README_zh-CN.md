@@ -1,6 +1,7 @@
 # SFR-Net
 
 <p align="center">
+  <a href="https://chuyuzhong.github.io/SFR-Net/"><img src="https://img.shields.io/badge/Project-Homepage-1598B7.svg" alt="项目主页"></a>
   <a href="https://arxiv.org/abs/2605.25737"><img src="https://img.shields.io/badge/arXiv-2605.25737-b31b1b.svg" alt="arXiv"></a>
   <a href="https://huggingface.co/shadowwalk/SFR-Net"><img src="https://img.shields.io/badge/Hugging%20Face-Weights-FFD21E.svg" alt="Hugging Face weights"></a>
 </p>
