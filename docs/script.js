@@ -33,27 +33,6 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 $$('.reveal').forEach((element) => observer.observe(element));
 
-const scaleDescriptions = {
-  1: 'Maximum local detail for precise boundaries and compact objects.',
-  3: 'Short-range context links nearby structures and reduces local ambiguity.',
-  14: 'Long-range observation reveals global layout and semantic continuity.'
-};
-const frustum = $('[data-frustum]');
-const distance = $('[data-distance]');
-const scaleCopy = $('[data-scale-copy]');
-frustum.dataset.activeScale = '1';
-$$('[data-scale]').forEach((button) => button.addEventListener('click', () => {
-  const scale = button.dataset.scale;
-  $$('[data-scale]').forEach((item) => {
-    const active = item === button;
-    item.classList.toggle('active', active);
-    item.setAttribute('aria-pressed', String(active));
-  });
-  frustum.dataset.activeScale = scale;
-  distance.textContent = `${scale}×`;
-  scaleCopy.textContent = scaleDescriptions[scale];
-}));
-
 const galleryItems = [
   {
     title: 'GID',
@@ -120,7 +99,7 @@ const clampDemoPan = () => {
 };
 
 const setDemoZoom = (nextZoom) => {
-  demoState.zoom = Math.max(1, Math.min(4, nextZoom));
+  demoState.zoom = Math.max(1, Math.min(10, nextZoom));
   if (demoState.zoom === 1) { demoState.x = 0; demoState.y = 0; }
   clampDemoPan();
   applyDemoTransform();

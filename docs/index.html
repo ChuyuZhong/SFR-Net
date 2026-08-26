@@ -85,40 +85,9 @@
       </div>
     </section>
 
-    <section class="section scale-section" id="explorer">
-      <div class="shell scale-shell">
-        <div class="section-heading light reveal">
-          <p class="section-index">02 · Scale explorer</p>
-          <h2>Stand at one point.<br>Change only the distance.</h2>
-          <p>Pick an observation distance to see how a fixed 512 × 512 model input trades spatial detail for geographic context.</p>
-        </div>
-        <div class="scale-lab reveal" data-delay="1">
-          <div class="scale-stage" aria-live="polite">
-            <div class="frustum" data-frustum>
-              <span class="frustum-line line-a"></span><span class="frustum-line line-b"></span>
-              <div class="frustum-plane plane-far"><span>Long-range</span></div>
-              <div class="frustum-plane plane-mid"><span>Short-range</span></div>
-              <div class="frustum-plane plane-near"><span>Local</span></div>
-              <i class="prp"></i>
-            </div>
-            <div class="scale-readout">
-              <span>Observation distance</span>
-              <strong data-distance>1×</strong>
-              <p data-scale-copy>Maximum local detail for precise boundaries and compact objects.</p>
-            </div>
-          </div>
-          <div class="scale-controls" role="group" aria-label="Choose an observation distance">
-            <button class="active" type="button" data-scale="1" aria-pressed="true"><strong>1×</strong><span>Local detail</span></button>
-            <button type="button" data-scale="3" aria-pressed="false"><strong>3×</strong><span>Nearby context</span></button>
-            <button type="button" data-scale="14" aria-pressed="false"><strong>14×</strong><span>Long-range structure</span></button>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section class="section shell" id="method">
       <div class="section-heading centered reveal">
-        <p class="section-index">03 · Method</p>
+        <p class="section-index">02 · Method</p>
         <h2>Scale-frustum representations,<br>fused from near to far.</h2>
         <p>SFR-Net samples aligned observations, identifies each range with learnable scale embeddings, and uses cascaded cross-scale fusion to progressively enrich the local representation.</p>
       </div>
@@ -136,15 +105,15 @@
     <section class="section results-section" id="results">
       <div class="shell">
         <div class="section-heading light reveal">
-          <p class="section-index">04 · Performance</p>
+          <p class="section-index">03 · Performance</p>
           <h2>Consistent gains across<br>two demanding benchmarks.</h2>
           <p>The paper reports state-of-the-art segmentation quality on GID and FBPS, with the largest gains where scale variation and semantic discontinuity matter most.</p>
         </div>
         <div class="metric-grid">
           <article class="metric-card reveal"><p>GID · mIoU</p><strong>74.67</strong><span class="gain">+1.72</span><small>paper result</small></article>
-          <article class="metric-card reveal" data-delay="1"><p>GID · OA</p><strong>86.94</strong><span class="dataset-chip">6 classes</span><small>paper result</small></article>
+          <article class="metric-card reveal" data-delay="1"><p>GID · OA</p><strong>86.94</strong><span class="gain">+1.09</span><small>paper result</small></article>
           <article class="metric-card reveal" data-delay="2"><p>FBPS · mIoU</p><strong>77.24</strong><span class="gain">+4.29</span><small>paper result</small></article>
-          <article class="metric-card reveal" data-delay="3"><p>FBPS · OA</p><strong>92.91</strong><span class="dataset-chip">24 classes</span><small>paper result</small></article>
+          <article class="metric-card reveal" data-delay="3"><p>FBPS · OA</p><strong>92.91</strong><span class="gain">+2.40</span><small>paper result</small></article>
         </div>
         <button class="paper-figure performance-figure reveal" type="button" data-lightbox="assets/performance-table.png" aria-label="Open the complete benchmark comparison table">
           <img src="assets/performance-table.png" alt="Quantitative comparison of SFR-Net and competing methods on GID and FBPS">
@@ -155,7 +124,7 @@
 
     <section class="section shell" id="visualizations">
       <div class="section-heading reveal">
-        <p class="section-index">05 · Qualitative results</p>
+        <p class="section-index">04 · Qualitative results</p>
         <h2>Slide across datasets.</h2>
         <p>Explore full-scene predictions. SFR-Net improves global consistency while retaining fine structures in dense, heterogeneous regions.</p>
       </div>
@@ -180,7 +149,7 @@
     <section class="section demo-section" id="demo">
       <div class="shell">
         <div class="section-heading light reveal">
-          <p class="section-index">06 · Interactive demo</p>
+          <p class="section-index">05 · Interactive demo</p>
           <h2>Zoom together.<br>Compare pixel by pixel.</h2>
           <p>Choose one of five ultra-wide scenes, then zoom or drag either pane. The original image and SFR-Net prediction stay perfectly synchronized.</p>
         </div>
@@ -196,7 +165,7 @@
             </div>
             <div class="demo-zoom" aria-label="Synchronized zoom controls">
               <button type="button" data-demo-minus aria-label="Zoom out">−</button>
-              <input type="range" min="100" max="400" value="100" step="10" data-demo-range aria-label="Zoom level">
+              <input type="range" min="100" max="1000" value="100" step="25" data-demo-range aria-label="Zoom level">
               <button type="button" data-demo-plus aria-label="Zoom in">+</button>
               <button class="demo-reset" type="button" data-demo-reset>Reset</button>
               <output data-demo-zoom>100%</output>
@@ -229,7 +198,7 @@
     <section class="section ablation-section" id="ablations">
       <div class="shell">
         <div class="section-heading centered reveal">
-          <p class="section-index">07 · Ablations</p>
+          <p class="section-index">06 · Ablations</p>
           <h2>Take it apart.<br>See what moves the needle.</h2>
           <p>Switch between the core studies to inspect transferability, cascaded fusion, feature quality, and overlap robustness.</p>
         </div>
@@ -239,17 +208,32 @@
           <button type="button" role="tab" aria-selected="false" aria-controls="ablation-overlap" data-ablation="overlap">Overlap robustness</button>
         </div>
         <div class="ablation-panel active" id="ablation-sfr" role="tabpanel">
-          <div class="ablation-copy"><span class="mini-label">Backbone agnostic</span><h3>SFR lifts three different segmentation families.</h3><p>Adding scale-frustum representations produces large mIoU gains for PSPNet, DeepLabv3+, and UperNet. The convergence view shows the advantage persists through training.</p></div>
+          <div class="ablation-copy">
+            <span class="mini-label">Backbone agnostic</span>
+            <h3>SFR lifts three different segmentation families.</h3>
+            <p>Adding scale-frustum representations produces large mIoU gains for PSPNet, DeepLabv3+, and UperNet. The convergence view shows the advantage persists through training.</p>
+            <div class="ablation-stat"><strong>+10.66</strong><span>mIoU · PSPNet</span></div>
+          </div>
           <button class="paper-figure" type="button" data-lightbox="assets/ablation-sfr-table.png"><img src="assets/ablation-sfr-table.png" alt="Scale-frustum representation ablation table"></button>
           <button class="paper-figure" type="button" data-lightbox="assets/convergence.png"><img src="assets/convergence.png" alt="Training convergence with and without scale-frustum representations"></button>
         </div>
         <div class="ablation-panel" id="ablation-ccsf" role="tabpanel" hidden>
-          <div class="ablation-copy"><span class="mini-label">Progressive context</span><h3>Short-range and long-range cues are complementary.</h3><p>Cascaded fusion improves both datasets, while the feature maps reveal sharper edges and cleaner foreground-background separation.</p></div>
+          <div class="ablation-copy">
+            <span class="mini-label">Progressive context</span>
+            <h3>Short-range and long-range cues are complementary.</h3>
+            <p>Cascaded fusion improves both datasets, while the feature maps reveal sharper edges and cleaner foreground-background separation.</p>
+            <div class="ablation-stat"><strong>+6.87</strong><span>mIoU · FBPS</span></div>
+          </div>
           <button class="paper-figure" type="button" data-lightbox="assets/ablation-ccsf-tables.png"><img src="assets/ablation-ccsf-tables.png" alt="CCSF component ablations on GID and FBPS"></button>
           <button class="paper-figure" type="button" data-lightbox="assets/ccsf-features.png"><img src="assets/ccsf-features.png" alt="Feature maps before and after CCSF"></button>
         </div>
         <div class="ablation-panel overlap-panel" id="ablation-overlap" role="tabpanel" hidden>
-          <div class="ablation-copy"><span class="mini-label">Boundary consistency</span><h3>Only 0.84 mIoU separates overlap and no-overlap inference.</h3><p>The smallest gap among compared methods indicates that SFR-Net learns stronger internal semantic continuity across patch boundaries.</p><div class="big-delta"><strong>0.84</strong><span>Δ mIoU</span></div></div>
+          <div class="ablation-copy">
+            <span class="mini-label">Boundary consistency</span>
+            <h3>Only 0.84 mIoU separates overlap and no-overlap inference.</h3>
+            <p>The smallest gap among compared methods indicates that SFR-Net learns stronger internal semantic continuity across patch boundaries.</p>
+            <div class="ablation-stat neutral"><strong>0.84</strong><span>Δ mIoU</span></div>
+          </div>
           <button class="paper-figure" type="button" data-lightbox="assets/overlap-table.png"><img src="assets/overlap-table.png" alt="Inference comparison with and without overlapping patches"></button>
         </div>
       </div>
@@ -258,7 +242,7 @@
     <section class="section shell" id="model">
       <div class="release-card reveal">
         <div class="release-copy">
-          <p class="section-index">08 · Model release</p>
+          <p class="section-index">07 · Model release</p>
           <h2>Ready to reproduce.</h2>
           <p>Download pretrained backbones and released checkpoints for GID, FBPS, and Inria Aerial. Released checkpoint metrics were reproduced with random seed 42 and therefore differ slightly from the paper.</p>
           <a class="button button-primary" href="https://huggingface.co/shadowwalk/SFR-Net" target="_blank" rel="noreferrer">Open on Hugging Face <span aria-hidden="true">↗</span></a>
@@ -274,7 +258,7 @@
     <section class="section citation-section" id="citation">
       <div class="shell citation-grid">
         <div class="section-heading light reveal">
-          <p class="section-index">09 · Citation</p>
+          <p class="section-index">08 · Citation</p>
           <h2>Build on SFR-Net.</h2>
           <p>If this project supports your research, please cite the paper and star the repository.</p>
         </div>
@@ -287,6 +271,20 @@
   year={2026}
 }</code></pre>
         </div>
+      </div>
+    </section>
+
+    <section class="section phoebe-section">
+      <div class="shell phoebe-card reveal">
+        <div class="phoebe-copy">
+          <p class="section-index">One more thing</p>
+          <h2>Meet Phoebe.</h2>
+          <p>If you find this repository helpful, please give it a star. Finally, here is Phoebe. You are not allowed to bully her.</p>
+          <a class="button button-primary" href="https://github.com/ChuyuZhong/SFR-Net" target="_blank" rel="noreferrer">Star SFR-Net <span aria-hidden="true">↗</span></a>
+        </div>
+        <figure class="phoebe-photo">
+          <img src="assets/phoebe.png" alt="Phoebe" loading="lazy">
+        </figure>
       </div>
     </section>
   </main>
