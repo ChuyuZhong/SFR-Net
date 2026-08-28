@@ -59,11 +59,41 @@
       </div>
     </section>
 
-    <section class="news-band" aria-label="Latest news">
-      <div class="shell news-inner">
-        <span class="news-label">Latest</span>
-        <p><time datetime="2026-08-26">Aug 26, 2026</time> — Code refreshed, known bugs fixed, and trained weights released for all three supported datasets.</p>
-        <a href="https://huggingface.co/shadowwalk/SFR-Net" target="_blank" rel="noreferrer">Get weights <span aria-hidden="true">→</span></a>
+    <section class="news-band" aria-label="Project news">
+      <div class="shell news-panel">
+        <div class="news-heading">
+          <p class="section-index">Project timeline</p>
+          <h2>News</h2>
+        </div>
+        <div class="news-list">
+          <article class="news-item">
+            <span class="news-label latest">Latest</span>
+            <time datetime="2026-08-26">Aug 26, 2026</time>
+            <p>We updated the codebase, fixed known bugs, improved the inference, testing, and visualization scripts, and released trained weights for GID, FBPS, and Inria Aerial.</p>
+            <a href="https://huggingface.co/shadowwalk/SFR-Net" target="_blank" rel="noreferrer">Get weights <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="news-item">
+            <span class="news-label updated">Updated</span>
+            <time datetime="2026-07-11">Jul 11, 2026</time>
+            <p>We received the first-round review decision from IEEE Transactions on Geoscience and Remote Sensing (IEEE TGRS), and the manuscript was invited for major revision.</p>
+          </article>
+          <article class="news-item">
+            <span class="news-label updated">Updated</span>
+            <time datetime="2026-05-25">May 25, 2026</time>
+            <p>Our paper, “SFR-Net: Learning Scale-Frustum Representations for Ultra-Wide Area Remote Sensing Image Segmentation,” was released on arXiv.</p>
+            <a href="https://arxiv.org/abs/2605.25737" target="_blank" rel="noreferrer">Read paper <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="news-item">
+            <span class="news-label updated">Updated</span>
+            <time datetime="2026-05-20">May 20, 2026</time>
+            <p>Our paper, “SFR-Net: Learning Scale-Frustum Representations for Ultra-Wide Area Remote Sensing Image Segmentation,” was submitted to IEEE TGRS.</p>
+          </article>
+          <article class="news-item">
+            <span class="news-label updated">Updated</span>
+            <time datetime="2026-05-11">May 11, 2026</time>
+            <p>We released the initial code version with training and testing scripts and pretrained weights.</p>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -241,25 +271,27 @@
       </div>
     </section>
 
-    <section class="section shell" id="model">
-      <div class="release-card reveal">
-        <div class="release-copy">
-          <p class="section-index">07 · Model release</p>
-          <h2>Ready to reproduce.</h2>
-          <p>Download pretrained backbones and released checkpoints for GID, FBPS, and Inria Aerial. Released checkpoint metrics were reproduced with random seed 42 and therefore differ slightly from the paper.</p>
-          <a class="button button-primary" href="https://huggingface.co/shadowwalk/SFR-Net" target="_blank" rel="noreferrer">Open on Hugging Face <span aria-hidden="true">↗</span></a>
-        </div>
-        <div class="release-metrics">
-          <article><h3>GID</h3><dl><div><dt>OA</dt><dd>86.82</dd></div><div><dt>mIoU</dt><dd>74.46</dd></div><div><dt>mF1</dt><dd>85.73</dd></div></dl></article>
-          <article><h3>FBPS</h3><dl><div><dt>OA</dt><dd>93.50</dd></div><div><dt>mIoU</dt><dd>77.86</dd></div><div><dt>mF1</dt><dd>66.72</dd></div></dl></article>
-          <article><h3>Inria Aerial</h3><dl><div><dt>OA</dt><dd>96.91</dd></div><div><dt>IoU*</dt><dd>83.96</dd></div><div><dt>F1*</dt><dd>91.28</dd></div></dl><small>* building class</small></article>
+    <section class="section model-section" id="model">
+      <div class="shell">
+        <div class="release-card reveal">
+          <div class="release-copy">
+            <p class="section-index">07 · Model release</p>
+            <h2>Ready to reproduce.</h2>
+            <p>Download pretrained backbones and released checkpoints for GID, FBPS, and Inria Aerial. Released checkpoint metrics were reproduced with random seed 42 and therefore differ slightly from the paper.</p>
+            <a class="button button-primary" href="https://huggingface.co/shadowwalk/SFR-Net" target="_blank" rel="noreferrer">Open on Hugging Face <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="release-metrics">
+            <article><h3>GID</h3><dl><div><dt>OA</dt><dd>86.82</dd></div><div><dt>mIoU</dt><dd>74.46</dd></div><div><dt>mF1</dt><dd>85.73</dd></div></dl></article>
+            <article><h3>FBPS</h3><dl><div><dt>OA</dt><dd>93.50</dd></div><div><dt>mIoU</dt><dd>77.86</dd></div><div><dt>mF1</dt><dd>66.72</dd></div></dl></article>
+            <article><h3>Inria Aerial</h3><dl><div><dt>OA</dt><dd>96.91</dd></div><div><dt>IoU*</dt><dd>83.96</dd></div><div><dt>F1*</dt><dd>91.28</dd></div></dl><small>* building class</small></article>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="section citation-section" id="citation">
       <div class="shell citation-grid">
-        <div class="section-heading light reveal">
+        <div class="section-heading reveal">
           <p class="section-index">08 · Citation</p>
           <h2>Build on SFR-Net.</h2>
           <p>If this project supports your research, please cite the paper and star the repository.</p>
