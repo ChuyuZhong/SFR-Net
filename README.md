@@ -29,6 +29,7 @@ SFR-Net is designed for semantic segmentation of ultra-wide area (UWA) remote se
 
 ## News 📰
 
+- **2026-09-03:** Our paper, “SFR-Net: Learning Scale-Frustum Representations for Ultra-Wide Area Remote Sensing Image Segmentation,” was officially accepted by IEEE Transactions on Geoscience and Remote Sensing (IEEE TGRS)!
 - **2026-08-26:** We updated the codebase, fixed known bugs, improved the inference, testing, and visualization scripts, and released trained weights for GID, FBPS, and Inria Aerial.
 - **2026-07-11:** We received the first-round review decision from IEEE Transactions on Geoscience and Remote Sensing (IEEE TGRS), and the manuscript was invited for major revision.
 - **2026-05-25:** Our paper, [“SFR-Net: Learning Scale-Frustum Representations for Ultra-Wide Area Remote Sensing Image Segmentation”](https://arxiv.org/abs/2605.25737), was released on arXiv.
